@@ -23,14 +23,21 @@ def data_load(curl,id_num):
     d = dt.strptime(timestmp,'%Y-%m-%dT%H:%M:%SZ')
     d_log = dt.strptime(tm_log,'%Y-%m-%dT%H:%M:%SZ')
     d_delta = d - d_log
-    print(d_delta)
+    t_delta = str(d_delta)
+    #print(d_delta)
     with open('tmstmplog{}.txt'.format(id_num),'w') as f:
         f.write(timestmp)
+    if t_delta[0:1] ==  '0' and t_delta[2:4] == '00' and t_delta[5:7] == '00':
+        print(0)
+        return 0
+    else:
+        print(1)
+        return 1
     '''
     tm_array = np.asarray([int(timestmp[11:13]),int(timestmp[14:16]),int(timestmp[17:19])])
     tm_log = np.load('tmstmplog.npy')
     print(tm_log)
     np.save('tmstmplog.npy',tm_array)
     '''
-data_load(curl1,1)
-data_load(curl2,2)
+#data_load(curl1,1)
+#data_load(curl2,2)
