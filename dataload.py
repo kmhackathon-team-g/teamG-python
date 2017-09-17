@@ -13,7 +13,7 @@ curl2 = "https://api.thingspeak.com/channels/332335/feeds.json?api_key=O81NGSHFY
 
 def data_load(curl,id_num):
     r = urllib.request.urlopen(curl)
-    log = json.loads(r.read())
+    log = json.loads(r.read().decode("utf-8"))
     timestmp = log['channel']['updated_at']
     if os.path.exists('./tmstmplog{}.txt'.format(id_num)) == False:
         with open('tmstmplog{}.txt'.format(id_num),'w') as f:
